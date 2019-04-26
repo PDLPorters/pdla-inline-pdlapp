@@ -52,10 +52,6 @@ sub validate {
     $o->SUPER::validate(@pass_along);
 }
 
-sub add_list { goto &Inline::C::add_list }
-sub add_string { goto &Inline::C::add_string }
-sub add_text { goto &Inline::C::add_text }
-
 #==============================================================================
 # Parse and compile C code
 #==============================================================================
