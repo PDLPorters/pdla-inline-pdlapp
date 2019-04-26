@@ -9,7 +9,7 @@ use Carp;
 use Cwd qw(cwd abs_path);
 use PDLA::Core::Dev;
 
-our $VERSION = '2.019105';
+our $VERSION = '2.019106';
 use base qw(Inline::C);
 
 #==============================================================================
