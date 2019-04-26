@@ -25,8 +25,6 @@ pp_def('testinc',
   Pars => 'a(); [o] b()',
   Code => '$b() = $a() + 1;' # wow, that's complicated
 );
-
-# this tests the bug with a trailing comment and *no* newline
 EOF
 is $@, '', 'bind no error';
 my $x = sequence(3,3);
