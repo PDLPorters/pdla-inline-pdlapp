@@ -24,7 +24,7 @@ sub register {
 	   };
 }
 
-# handle BLESS, INTERNAL, NOISY - pass everything else up to Inline::C
+# handle BLESS, INTERNAL - pass everything else up to Inline::C
 sub validate {
     my $o = shift;
     $o->{ILSM} ||= {};
@@ -45,10 +45,6 @@ sub validate {
 	    $key eq 'BLESS'
 	   ) {
 	    $o->{ILSM}{$key} = $value;
-	    next;
-	}
-	if ($key eq 'NOISY') {
-            $o->{CONFIG}{BUILD_NOISY} = $value;
 	    next;
 	}
 	push @pass_along, $key, $value;
