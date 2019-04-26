@@ -1,0 +1,16 @@
+Changes
+examples/inlpp.pl
+examples/inlpp_link.pl
+examples/inlppminimal.pl
+examples/Module/Makefile.PL
+examples/Module/MyInlineMod.pm
+examples/Module/t/myinlinemod.t
+Makefile.PL
+MakePdlappInstallable.pm
+MANIFEST			This list of files
+MANIFEST.SKIP
+Pdlapp.pm
+t/00-report-prereqs.t
+t/01-checkmanifest.t
+t/inlinepdlpp.t
+xt/00-check-changelog.t
