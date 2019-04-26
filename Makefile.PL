@@ -2,8 +2,27 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 WriteMakefile(
-	      NAME => 'Inline',
-	      VERSION_FROM => 'Pdlapp.pm',
-	      PREREQ_PM => {'Inline' => 0.43},
-	      PM => { map {($_ => '$(INST_LIBDIR)/Inline/'.$_)} <*.pm> },
+  NAME => 'Inline',
+  VERSION_FROM => 'Pdlapp.pm',
+  PREREQ_PM => {
+    'Inline' => 0.68,
+    'Inline::C' => 0.62,
+    'PDLA::Core' => '2.019104',
+    'ExtUtils::MakeMaker' => '7.34',
+  },
+  PM => { map {($_ => '$(INST_LIBDIR)/Inline/'.$_)} <*.pm> },
+  META_MERGE => {
+    "meta-spec" => { version => 2 },
+    resources => {
+      homepage => 'http://pdlporters.github.io',
+      bugtracker  => {web=>'https://github.com/PDLPorters/pdla-inline-pdlapp/issues'},
+      repository  => {
+        url => 'git://github.com/PDLPorters/pdla-inline-pdlapp',
+        type => 'git',
+        web => 'https://github.com/PDLPorters/pdla-inline-pdlapp',
+      },
+      x_IRC => 'irc://irc.perl.org/#pdl',
+    },
+    no_index => { directory => ['examples'] },
+  },
 );
