@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 WriteMakefile(
-  NAME => 'Inline',
+  NAME => 'Inline::Pdlapp',
   VERSION_FROM => 'lib/Inline/Pdlapp.pm',
   PREREQ_PM => {
     'Inline' => 0.68,
