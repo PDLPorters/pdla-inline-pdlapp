@@ -3,19 +3,13 @@ sudo: false
 matrix:
   include:
     # start the first coverage early so that it starts before everything else
-    - perl: "5.20"
+    - perl: "5.26"
       env: COVERAGE=1
     - perl: "5.20"
       env: EUMM_BLEAD=1
-    - perl: "5.20"
-      env: TEST_INSTALLED=1 # test not from blib but after installing
     - perl: "5.10"
-#    - perl: "5.12"
-#    - perl: "5.14"
-#    - perl: "5.16"
-#    - perl: "5.18"
     - perl: "blead"
-    - perl: "5.20"
+    - perl: "5.26"
   allow_failures:
     - perl: blead
 before_install:
@@ -33,18 +27,14 @@ install:
   - cpan-install --deps       # installs prereqs, including recommends
   - cpan-install --coverage   # installs coverage prereqs, if enabled
   - prove t/00-report-prereqs.t t/01-checkmanifest.t
-  - prove -b -v $SRC_DIR/xt/00-check-changelog.t # run the author test out of the source directory
-  # SYSTEM_CORES set by travis-perl-helpers
-  - if [ "$SERIAL_BUILD" == 1 ]; then make; else make -j$(( $SYSTEM_CORES * 2 )); fi
+  - prove -l -v $SRC_DIR/xt/00-check-changelog.t # run the author test out of the source directory
 before_script:
   - coverage-setup
 script:
   - env|sort
-  - VERBOSE_FLAG=""; if [ "$TEST_VERBOSE" == 1 ]; then VERBOSE_FLAG="-v"; fi
-  - PROVE_FLAG="$VERBOSE_FLAG"; if [ "$TEST_INSTALLED" == 1 ]; then make install clean; mv Basic Basic.x; mv ../Basic ../Basic.x; rm t/01-checkmanifest.t; else PROVE_FLAG="-b $PROVE_FLAG"; fi # clean is to ensure no blib, mv to ensure doesn't think is in repo!
-  - if [ "$SERIAL_TESTING" == 1 ]; then prove $PROVE_FLAG $(test-files); else prove --formatter TAP::Formatter::File -j$(test-jobs) $PROVE_FLAG $(test-files); fi
+  - prove --formatter TAP::Formatter::File -j$(test-jobs) -l $(test-files)
 after_success:
-  - coverage-report --nogcov
+  - coverage-report
 branches:
   except:
     - /^wip\//
