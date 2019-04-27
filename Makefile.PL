@@ -24,6 +24,7 @@ WriteMakefile(
     },
     no_index => { directory => ['examples'] },
   },
+  clean => { FILES => '.inlinepdlpp' },
 );
 
 sub MY::postamble {
